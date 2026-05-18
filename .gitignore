@@ -2,3 +2,9 @@ _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+node_modules/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+dist/
+.DS_Store
+.obsidian
