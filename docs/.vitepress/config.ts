@@ -8,6 +8,7 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   markdown: {
+    theme: 'github-dark-default',
     lineNumbers: true
   },
   themeConfig: {
