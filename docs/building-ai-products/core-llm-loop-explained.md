@@ -163,3 +163,7 @@ All AI systems boil down to 3 key things in my mind
 - Model training and size has a massive impact on how an agent performs. It's a good idea to approach this with a data science mindset and not a software engineer mindset
 - MCP, skills, sub-agents, etc. are all higher level concepts that fundamentally use these same building blocks. They will use a combination of system prompts, tool calls and context management to achieve an outcome. 
 - Tool call availability is not free, if you have hundreds of tool calls it will eat up context. So dynamically swapping in and out tool calls in different scenarios is important.
+
+## This is just a building block
+
+Your product won't just be a single agent, it'll be layers of agents and workflows and traditional code that creates the full experience. Agents and workflow steps are wrapped in permissions, logging, tool call logic, failure detection and more in production systems to make them as robust and reliable as possible.
