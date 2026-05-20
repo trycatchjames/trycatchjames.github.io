@@ -86,15 +86,13 @@ Not a model output — this is what **you** send back after running a tool. Goes
 {
   "type": "tool_result",
   "tool_use_id": "toolu_01Ab",
-  "content": "Tokyo: 24°C, partly cloudy"
+  "content": "Tokyo: 24°C, partly cloudy" // can be array
 }
 ```
 
-`content` can also be an array of blocks if you want to return an image alongside text.
-
 #### `image`
 
-Used in **requests** to send an image to the model. Not typically emitted by the model in responses.
+Used in **requests** to send an image to the model. Not typically emitted by the model in responses. Source can also be `"url"` instead of `"base64"`.
 
 ```json
 {
@@ -106,8 +104,6 @@ Used in **requests** to send an image to the model. Not typically emitted by the
   }
 }
 ```
-
-Source can also be `"url"` instead of `"base64"`.
 
 #### `document`
 
@@ -151,11 +147,19 @@ If something goes wrong mid-stream you may also get:
 
 ## Putting it together - Tool use, Context, System messages
 
-When I dug into it, I realised there was less levers to pull than I first expected. The real secret sauce is how you use it. 
+When I dug into it, I realised there was less levers to pull than I first expected. The real secret sauce is (of course) how you use it and the model you select.
 
 All AI systems boil down to 3 key things in my mind
 1. System messages - has a huge impact on the result from the model. Changes to the system message need to be considered carefully
 2. Tool calls - any action an agent can do is a tool call. We'll dig into what makes a good tool call request and response in dedicated articles
 3. Context - context is the message/full conversation that the model can use to respond. Managing context is a highly nuanced topic and it can be effected by model selection, use case and chat history.
 
-We'll dive into each of these areas in greater detail in future articles.
+## Other observations
+
+- All requests are stateless. To achieve a conversation, the entire conversation is sent back in each subsequent request. This can add up as each turn compounds token usage which is where caching becomes important.
+- Because the API calls are stateless, you can seed a conversation without having to get the model to perform each action. It also opens doors to compacting conversations and other techniques to reduce token usage.
+- You should use external fail safes for stopping a conversation if it goes off the rails. You might get into a situation where a model never achieves the desired outcome and keeps trying, so having a maximum amount of turns or some other manual trigger can halt the conversation.
+- API responses are slow, so streaming can be important for showing the user what's happening and they don't feel like it's just not working at all.
+- Model training and size has a massive impact on how an agent performs. It's a good idea to approach this with a data science mindset and not a software engineer mindset
+- MCP, skills, sub-agents, etc. are all higher level concepts that fundamentally use these same building blocks. They will use a combination of system prompts, tool calls and context management to achieve an outcome. 
+- Tool call availability is not free, if you have hundreds of tool calls it will eat up context. So dynamically swapping in and out tool calls in different scenarios is important.

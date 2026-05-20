@@ -5,7 +5,7 @@ description: AI notes, experiments, and learning in public.
 
 # James Harvey
 
-### CTO Based in Brisbane
+### CTO Based in Brisbane, Australia
 
 AI notes, experiments, and learning in public.
 
@@ -15,7 +15,7 @@ This is where I structure my learning around building AI applications. Things I 
 
 - [Building AI products](./building-ai-products/) and all of the fun involved
 - [Using AI](./using-ai/) for coding, office work, general tasks
-- [Blog](./blog/) for dated updates and reflections
+- [Blog](./blog/) for updates and reflections
 - [Glossary](./glossary) for quick definitions of terms used across these notes
 
 ### Interesting links
