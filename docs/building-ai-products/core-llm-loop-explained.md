@@ -145,7 +145,7 @@ If something goes wrong mid-stream you may also get:
 }
 ```
 
-## Putting it together - Tool use, Context, System messages
+## Putting it Together - Tool use, Context, System messages
 
 When I dug into it, I realised there was less levers to pull than I first expected. The real secret sauce is (of course) how you use it and the model you select.
 
@@ -154,7 +154,7 @@ All AI systems boil down to 3 key things in my mind
 2. Tool calls - any action an agent can do is a tool call. We'll dig into what makes a good tool call request and response in dedicated articles
 3. Context - context is the message/full conversation that the model can use to respond. Managing context is a highly nuanced topic and it can be effected by model selection, use case and chat history.
 
-## Other observations
+## Other Observations
 
 - All requests are stateless. To achieve a conversation, the entire conversation is sent back in each subsequent request. This can add up as each turn compounds token usage which is where caching becomes important.
 - Because the API calls are stateless, you can seed a conversation without having to get the model to perform each action. It also opens doors to compacting conversations and other techniques to reduce token usage.
@@ -164,6 +164,6 @@ All AI systems boil down to 3 key things in my mind
 - MCP, skills, sub-agents, etc. are all higher level concepts that fundamentally use these same building blocks. They will use a combination of system prompts, tool calls and context management to achieve an outcome. 
 - Tool call availability is not free, if you have hundreds of tool calls it will eat up context. So dynamically swapping in and out tool calls in different scenarios is important.
 
-## This is just a building block
+## This is Just a Building Block
 
-Your product won't just be a single agent, it'll be layers of agents and workflows and traditional code that creates the full experience. Agents and workflow steps are wrapped in permissions, logging, tool call logic, failure detection and more in production systems to make them as robust and reliable as possible.
+Your product won't just be a single agent, it'll be layers of agents and workflows and traditional code that creates the full experience. In production systems agents and workflow steps are wrapped in permissions, logging, tool call logic, failure detection and more.
